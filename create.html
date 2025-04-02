@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Coffee Order</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+
+</head>
+<body>
+<h1>New Coffee Order</h1>
+<div>
+  <form action="/save" method="POST">
+    <div>
+      <label for="customerName">Customer Name</label>
+      <input type="text" id="customerName" name="customerName" required>
+    </div>
+    <div>
+      <label for="coffeeType">Coffee Type</label>
+      <input type="text" id="coffeeType" name="coffeeType" required>
+    </div>
+    <div>
+      <label for="size">Size</label>
+      <select name="size" id="size">
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+      </select>
+    </div>
+    <div>
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" required>
+    </div>
+    <div>
+      <label for="price">Price per Coffee</label>
+      <input type="number" id="price" name="price" step="0.01" required>
+    </div>
+    <div>
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="2" cols="20" required></textarea>
+    </div>
+    <button>Place Order</button>
+  </form>
+</div>
+</body>
+</html>
