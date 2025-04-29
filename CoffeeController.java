@@ -1,33 +1,149 @@
-package com.hot.damn;
+package com.JOWHAN.JOE;
 
-import com.hot.damn.model.Coffee;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/coffee")
 public class CoffeeController {
-    private final List<Coffee> coffeeList = new ArrayList<>();
+    CoffeeService coffeeService;
 
-    @GetMapping("/form")
-    public String showForm(Model model) {
-        model.addAttribute("coffee", new Coffee());
-        return "coffee-form";
+    /**
+     * Construct Coffee Controller of instant Coffee service
+     */
+    public CoffeeController() {
+        coffeeService = new CoffeeService();
     }
 
-    @PostMapping("/submit")
-    public String submitForm(@ModelAttribute Coffee coffee) {
-        coffeeList.add(coffee);
-        return "redirect:/coffee/list";
+    /**
+     * Display coffee list filtered by search
+     * @param search String search
+     * @param model the object model
+     * @return the html file index of default display of coffee list
+     */
+    @GetMapping("/")
+    public String index(@RequestParam(defaultValue = "") String search, Model model) {
+        model.addAttribute("coffees", coffeeService.searchCoffee(search));
+        return "index";
     }
 
-    @GetMapping("/list")
-    public String listCoffees(Model model) {
-        model.addAttribute("coffees", coffeeList);
-        return "coffee-list";
+
+    /**
+     * Deletes coffee entry by id
+     * @param id identifier of coffee
+     * @return the deleted coffee
+     */
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id) {
+        coffeeService.deleteCoffee(id);
+        return "redirect:/";
+    }
+
+    /**
+     * Adds new coffee using form
+     * @return the form of adding a new coffee
+     */
+    @GetMapping("/add")
+    public String add(){
+
+        return "add";
+    }
+
+    /**
+     * it handles the post type request method (save)
+     * @param name coffee name nigga
+     * @param type type of coffee nigga
+     * @param size size of coffee nigga
+     * @param price price of coffee nigga
+     * @param roastLevel roast level of coffee nigga
+     * @param origin origin of coffee nigga
+     * @param isDecaf boolean using yes or no if the coffee is decaffeinated nigga
+     * @param stock how many stock of coffee this the user ordered nigga
+     * @param flavorNotes flavor notes descriptions nigga
+     * @param brewMethod what method what they want nigga
+     * @return the post saves coffee entry nigga
+     */
+    @PostMapping("/save")
+    public String store(@RequestParam String name,
+                        @RequestParam String type,
+                        @RequestParam String size,
+                        @RequestParam double price,
+                        @RequestParam String roastLevel,
+                        @RequestParam String origin,
+                        @RequestParam boolean isDecaf,
+                        @RequestParam int stock,
+                        @RequestParam String flavorNotes,
+                        @RequestParam String brewMethod) {
+
+        Coffee coffee = new Coffee(coffeeService.getLastId() + 1, name, type, size, price, roastLevel, origin, isDecaf, stock, flavorNotes, brewMethod);
+        coffeeService.addCoffee(coffee);
+        return "redirect:/";
+    }
+
+    /**
+     * it edits the form of coffee that they ordered
+     * @param id identifier of coffee
+     * @param model the object
+     * @return the edited coffee form entry
+     */
+    @GetMapping("/edit")
+    public String edit(@RequestParam int id, Model model) {
+        Coffee c = coffeeService.getCoffee(id);
+        if(c != null){
+            model.addAttribute("coffee", c);
+            return "edit";
+        }
+        return "redirect:/";
+    }
+
+    /**
+     * updated coffee form entry
+     * @param id          Unique identifier for the coffee
+     * @param name        Name of the coffee
+     * @param type        Type of coffee (e.g., espresso, cappuccino)
+     * @param size        Size of the coffee (small, medium, large)
+     * @param price       Price of the coffee
+     * @param roastLevel  Roast level (light, medium, dark)
+     * @param origin      Origin of the coffee beans
+     * @param isDecaf     Whether the coffee is decaffeinated
+     * @param stock       Number of units in stock
+     * @param flavorNotes Description of the flavor profile
+     * @param brewMethod  Preferred brewing method
+     * @return the updated coffee form
+     */
+    @PostMapping("/update")
+    public String update(@RequestParam int id,
+                         @RequestParam String name,
+                         @RequestParam String type,
+                         @RequestParam String size,
+                         @RequestParam double price,
+                         @RequestParam String roastLevel,
+                         @RequestParam String origin,
+                         @RequestParam boolean isDecaf,
+                         @RequestParam int stock,
+                         @RequestParam String flavorNotes,
+                         @RequestParam String brewMethod) {
+        // Retrieve the coffee object from the service by ID
+        Coffee coffee = coffeeService.getCoffee(id);
+        // Check if the coffee exists before updating
+        if (coffee != null) {
+            // Update coffee details with new values
+            coffee.setName(name);
+            coffee.setType(type);
+            coffee.setSize(size);
+            coffee.setPrice(price);
+            coffee.setRoastLevel(roastLevel);
+            coffee.setOrigin(origin);
+            coffee.setDecaf(isDecaf);
+            coffee.setStock(stock);
+            coffee.setFlavorNotes(flavorNotes);
+            coffee.setBrewMethod(brewMethod);
+            // Save the updated coffee back to the service
+            coffeeService.updateCoffee(id, coffee);
+        }
+        return "redirect:/";
     }
 }
