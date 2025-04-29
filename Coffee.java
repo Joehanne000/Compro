@@ -1,44 +1,151 @@
-package com.hot.damn.model;
-
-import java.util.List;
+package com.JOWHAN.JOE;
 
 public class Coffee {
+    private int id;
     private String name;
     private String type;
     private String size;
     private double price;
     private String roastLevel;
     private String origin;
-    private boolean decaf;
+    private boolean isDecaf;
     private int stock;
-    private List<String> flavorNotes;
+    private String flavorNotes;
     private String brewMethod;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public Coffee() {}
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    /**
+     * Parameterized constructor for creating a Coffee object with specified details.
+     *
+     * @param id          Unique identifier for the coffee
+     * @param name        Name of the coffee
+     * @param type        Type of coffee (e.g., espresso, cappuccino)
+     * @param size        Size of the coffee (small, medium, large)
+     * @param price       Price of the coffee
+     * @param roastLevel  Roast level (light, medium, dark)
+     * @param origin      Origin of the coffee beans
+     * @param isDecaf     Whether the coffee is decaffeinated
+     * @param stock       Number of units in stock
+     * @param flavorNotes Description of the flavor profile
+     * @param brewMethod  Preferred brewing method
+     */
+    public Coffee(int id, String name, String type, String size, double price, String roastLevel,
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+        this.roastLevel = roastLevel;
+        this.origin = origin;
+        this.isDecaf = isDecaf;
+        this.stock = stock;
+        this.flavorNotes = flavorNotes;
+        this.brewMethod = brewMethod;
+    }
 
-    public String getSize() { return size; }
-    public void setSize(Strinva return price; }
-    public void setPrice(double price) { this.price = price; }
+    public int getId() {
 
-    public String getRoastLevel() { return roastLevel; }
-    public void setRoastLevel(String roastLevel) { this.roastLevel = roastLevel; }
+        return id;
+    }
+    public void setId(int id) {
 
-    public String getOrigin() { return origin; }
-    public void setOrigin(String origin) { this.origin = origin; }
+        this.id = id;
+    }
 
-    public boolean isDecaf() { return decaf; }
-    public void setDecaf(boolean decaf) { this.decaf = decaf; }
+    public String getName() {
 
-    public int getStock() { return stock; }
-    public void setStock(int stock) { this.stock = stock; }
+        return name;
+    }
 
-    public List<String> getFlavorNotes() { return flavorNotes; }
-    public void setFlavorNotes(List<String> flavorNotes) { this.flavorNotes = flavorNotes; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getBrewMethod() { return brewMethod; }
-    public void setBrewMethod(String brewMethod) { this.brewMethod = brewMethod; }
+    public String getType() {
+
+        return type;
+    }
+
+    public void setType(String type) {
+
+        this.type = type;
+    }
+
+    public String getSize() {
+
+        return size;
+    }
+
+    public void setSize(String size) {
+
+        this.size = size;
+    }
+
+    public double getPrice() {
+
+        return price;
+    }
+
+    public void setPrice(double price) {
+
+        this.price = price;
+    }
+
+    public String getRoastLevel() {
+
+        return roastLevel;
+    }
+
+    public void setRoastLevel(String roastLevel) {
+
+        this.roastLevel = roastLevel;
+    }
+
+    public String getOrigin() {
+
+        return origin;
+    }
+    public void setOrigin(String origin) {
+
+        this.origin = origin;
+    }
+
+    public boolean isDecaf() {
+
+        return isDecaf;
+    }
+
+    public void setDecaf(boolean isDecaf) {
+
+        this.isDecaf = isDecaf;
+    }
+
+    public int getStock() {
+
+        return stock;
+    }
+    public void setStock(int stock) {
+
+        this.stock = stock;
+    }
+
+    public String getFlavorNotes() {
+
+        return flavorNotes;
+    }
+    public void setFlavorNotes(String flavorNotes) {
+
+        this.flavorNotes = flavorNotes;
+    }
+
+    public String getBrewMethod() {
+
+        return brewMethod;
+    }
+    public void setBrewMethod(String brewMethod) {
+
+        this.brewMethod = brewMethod;
+    }
 }
