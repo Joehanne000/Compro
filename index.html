@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <title>Coffee List</title>
+
+</head>
+<body>
+<p th:if="${message}" th:text="${message}" style="color: green;"></p>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<div class="container">
+    <h1>Coffee Ordering</h1>
+    <a href="/add" class="coffee-btn">Add New Coffee</a>
+    <div class="search-bar-container">
+        <form>
+            <input type="text" name="search" class="search-bar" placeholder="Search coffee...">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Roast Level</th>
+            <th>Origin</th>
+            <th>Decaf</th>
+            <th>Stock</th>
+            <th>Flavor Notes</th>
+            <th>Brew Method</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="coffee, stat:${coffees}">
+            <td>[[${stat.count}]]</td>
+            <td th:text="${coffee.name}"></td>
+            <td th:text="${coffee.type}"></td>
+            <td th:text="${coffee.size}"></td>
+            <td th:text="'$' + ${coffee.price}"></td>
+            <td th:text="${coffee.roastLevel}"></td>
+            <td th:text="${coffee.origin}"></td>
+            <td th:text="${coffee.isDecaf ? 'Yes' : 'No'}"></td>
+            <td th:text="${coffee.stock}"></td>
+            <td th:text="${coffee.flavorNotes}"></td>
+            <td th:text="${coffee.brewMethod}"></td>
+            <td>
+                <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
+                <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
+                <p>Welcome, <span th:text="${session.username}">user</span>!</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<form action="/logout" method="get" style="margin-top: 10px;">
+    <button type="submit">Logout</button>
+</body>
+</html>
+
