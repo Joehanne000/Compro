@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
     <title>Coffee List</title>
-
 </head>
 <body>
-<p th:if="${message}" th:text="${message}" style="color: green;"></p>
-<p th:if="${error}" th:text="${error}" style="color: red;"></p>
 
 <div class="container">
     <h1>Coffee Ordering</h1>
+
+    <p th:if="${message}" th:text="${message}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    <p>Welcome, <span th:text="${session.username}">user</span>!</p>
+
     <a href="/add" class="coffee-btn">Add New Coffee</a>
+
     <div class="search-bar-container">
         <form>
             <input type="text" name="search" class="search-bar" placeholder="Search coffee...">
@@ -39,8 +42,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="coffee, stat:${coffees}">
-            <td>[[${stat.count}]]</td>
+        <tr th:each="coffee, stat : ${coffees}">
+            <td th:text="${stat.count}"></td>
             <td th:text="${coffee.name}"></td>
             <td th:text="${coffee.type}"></td>
             <td th:text="${coffee.size}"></td>
@@ -54,14 +57,15 @@
             <td>
                 <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
                 <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
-                <p>Welcome, <span th:text="${session.username}">user</span>!</p>
             </td>
         </tr>
         </tbody>
     </table>
+
+    <form action="/logout" method="get" style="margin-top: 10px;">
+        <button type="submit">Logout</button>
+    </form>
 </div>
-<form action="/logout" method="get" style="margin-top: 10px;">
-    <button type="submit">Logout</button>
+
 </body>
 </html>
-
