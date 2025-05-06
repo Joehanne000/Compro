@@ -1,37 +1,38 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0e6d2;
-    color: #4d4b47;
+    background-color: #f5f5f5;
+    color: #2e2e2e;
     line-height: 1.6;
     font-size: 16px;
 }
 
-
 .container {
-    width: 100%;
+    max-width: 1000px;
     margin: 50px auto;
+    padding: 0 20px;
     text-align: center;
 }
 
 h1 {
     font-size: 36px;
-    color: #6b4f4f;
+    color: #333;
     margin-bottom: 20px;
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
 }
 
-.coffee-btn {
+button, .coffee-btn, .search-btn, input[type="submit"] {
     display: inline-block;
     padding: 12px 28px;
-    background-color: #8b6b4e;
-    color: white;
+    background-color: #555;
+    color: #fff;
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;
@@ -39,170 +40,49 @@ h1 {
     cursor: pointer;
     border: none;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-.coffee-btn:hover {
-    background-color: #6f4e37;
+button:hover, .coffee-btn:hover, .search-btn:hover, input[type="submit"]:hover {
+    background-color: #333;
 }
 
 .search-bar-container {
     margin-top: 30px;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
 }
 
-.search-bar {
+.search-bar,
+input[type="text"],
+input[type="number"],
+input[type="checkbox"],
+select {
     width: 60%;
     padding: 12px;
     font-size: 18px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
-.search-bar:focus {
-    background-color: #f0e6d2;
-    border-color: #8b6b4e;
-}
-
-#name {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#type {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#size {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#price {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#roastLevel {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#origin {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#isDecaf {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#stock {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#flavorNotes {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-#brewMethod {
-    width: 60%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-.search-btn {
-    padding: 12px 28px;
-    background-color: #8b6b4e;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 30px;
-    cursor: pointer;
-    border: none;
-}
-
-button {
-    padding: 12px 28px;
-    background-color: #8b6b4e;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 30px;
-    cursor: pointer;
-    border: none;
-}
-
-
-.search-btn:hover {
-    background-color: #6f4e37;
-}
-
-button:hover {
-    background-color: #6f4e37;
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    background-color: #e0e0e0;
+    border-color: #999;
 }
 
 form {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f7f3;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    text-align: left;
 }
 
 .form-group {
@@ -211,30 +91,11 @@ form {
 
 label {
     font-size: 18px;
-    color: #6b4f4f;
+    color: #444;
     font-weight: 500;
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-family: 'Roboto', sans-serif;
-}
-
-select {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    background-color: #f7f2eb;
-    color: #6b4f4f;
-}
-
-select:hover {
-    background-color: #f0e3d2;
-}
-
-select:focus {
-    background-color: #f0e6d2;
-    border-color: #8b6b4e;
 }
 
 table {
@@ -243,36 +104,37 @@ table {
     border-collapse: collapse;
 }
 
-table th, table td {
+table th,
+table td {
     padding: 14px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     font-size: 16px;
-    color: #4d4b47;
+    color: #333;
 }
 
 table th {
-    background-color: #8b6b4e;
-    color: white;
+    background-color: #666;
+    color: #fff;
     font-weight: 600;
 }
 
 table td {
-    background-color: #fff;
+    background-color: #fafafa;
 }
 
 table td a {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #8b6b4e;
-    color: white;
+    background-color: #555;
+    color: #fff;
     border-radius: 20px;
     text-decoration: none;
     font-weight: 500;
 }
 
 table td a:hover {
-    background-color: #6f4e37;
+    background-color: #333;
 }
 
 a.back-link {
@@ -280,10 +142,10 @@ a.back-link {
     font-size: 16px;
     margin-top: 20px;
     text-decoration: none;
-    color: #8b6b4e;
+    color: #666;
     font-weight: 500;
 }
 
 a.back-link:hover {
-    color: #6f4e37;
+    color: #444;
 }
