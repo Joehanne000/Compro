@@ -1,12 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>New Coffee</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #3b240c;
+            color: #fff;
+            line-height: 1.6;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar, .nav-list {
+            width: 250px;
+            height: 100vh;
+            background-color: #4b2e0c;
+            border-right: 2px solid #a67c00;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 20px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: #f5deb3;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            gap: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-list li a:hover,
+        .nav-list li.active a {
+            background-color: #a67c00;
+            color: #3b240c;
+        }
+
+        .nav-list li a span {
+            font-size: 1.4rem;
+        }
+
+        /* Main Container */
+        .container {
+            margin: 50px auto;
+            max-width: 900px;
+            padding: 80px 60px;
+            background-color: #5a3e1b;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            color: #f0e6d2;
+            font-family: 'Georgia', serif;
+            margin-left: 270px;
+            width: calc(100% - 270px);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            color: #f5deb3;
+        }
+
+        /* Form Styles */
+        form {
+            background-color: #4b2e0c;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: inset 0 0 10px #a67c00;
+            text-align: left;
+            color: #f5deb3;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #f5deb3;
+            font-family: 'Georgia', serif;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            background-color: #7f5e1f;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            background-color: #a67c00;
+            outline: none;
+            color: #3b240c;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+            margin-right: 10px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .form-group input[type="checkbox"] + label {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        button[type="submit"],
+        .coffee-btn,
+        .search-btn,
+        input[type="submit"] {
+            background-color: #a67c00;
+            color: #3b240c;
+            font-weight: 700;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        button[type="submit"]:hover,
+        .coffee-btn:hover,
+        .search-btn:hover,
+        input[type="submit"]:hover {
+            background-color: #d4af37;
+            color: #2e1b00;
+        }
+
+        /* Back link */
+        a.back-link {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #f5deb3;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        a.back-link:hover {
+            color: #d4af37;
+        }
+
+        /* Fieldset */
+        fieldset {
+            border: 1px solid #a67c00;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 18px;
+            color: #f5deb3;
+            font-family: 'Georgia', serif;
+        }
+
+        legend {
+            font-weight: 700;
+            font-size: 18px;
+            padding: 0 5px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #a67c00;
+            font-size: 16px;
+            color: #f0e6d2;
+        }
+
+        table th {
+            background-color: #6b4c2c;
+            color: #f5deb3;
+            font-weight: 700;
+        }
+
+        table td {
+            background-color: #4b2e0c;
+        }
+
+        table td a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #a67c00;
+            color: #3b240c;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        table td a:hover {
+            background-color: #d4af37;
+            color: #2e1b00;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+
+            .container {
+                margin-left: 20px;
+                width: auto;
+                padding: 40px 20px;
+            }
+        }
+
+    </style>
+
+
 </head>
 <body>
+<ul class="nav-list">
+    <li><a href="/home"><span>🏠</span> Home</a></li>
+    <li><a href="/add"><span>➕</span> Add Coffee</a></li>
+    <li><a href="/catalog"><span>📚</span> Catalog</a></li>
+    <li><a href="/logout"><span>🚪</span> Logout</a></li>
+</ul>
 
 <div class="container">
     <h1>New Coffee</h1>
@@ -15,7 +281,7 @@
         <!-- Name -->
         <div class="form-group">
             <label for="name">Coffee Name</label>
-            <input type="text" id="name" name="name" required minlength="2" maxlength="50">
+            <input type="text" id="name" name="name" required minlength="2" maxlength="50" />
         </div>
 
         <!-- Type -->
@@ -40,7 +306,7 @@
         <!-- Price -->
         <div class="form-group">
             <label for="price">Price ($)</label>
-            <input type="number" id="price" name="price" step="0.01" min="0.01" required>
+            <input type="number" id="price" name="price" step="0.01" min="0.01" required />
         </div>
 
         <!-- Roast Level -->
@@ -56,28 +322,31 @@
         <!-- Origin -->
         <div class="form-group">
             <label for="origin">Origin</label>
-            <input type="text" id="origin" name="origin" maxlength="100">
+            <input type="text" id="origin" name="origin" maxlength="100" />
         </div>
 
         <!-- Is Decaf -->
         <div class="form-group">
             <label for="isDecaf">Decaf</label>
-            <input type="checkbox" id="isDecaf" name="isDecaf">
+            <input type="checkbox" id="isDecaf" name="isDecaf" />
         </div>
 
         <!-- Stock -->
         <div class="form-group">
             <label for="stock">Stock</label>
-            <input type="number" id="stock" name="stock" min="0" required>
+            <input type="number" id="stock" name="stock" min="0" required />
         </div>
 
         <!-- Flavor Notes -->
-        <div class="form-group">
-            <label>Flavor Notes</label><br>
-            <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate
-            <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus
-            <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty
-        </div>
+        <fieldset>
+            <legend>Flavor Notes</legend>
+            <input type="checkbox" name="flavorNotes" value="Chocolate" id="flavorChocolate" />
+            <label for="flavorChocolate">Chocolate</label>
+            <input type="checkbox" name="flavorNotes" value="Citrus" id="flavorCitrus" />
+            <label for="flavorCitrus">Citrus</label>
+            <input type="checkbox" name="flavorNotes" value="Nutty" id="flavorNutty" />
+            <label for="flavorNutty">Nutty</label>
+        </fieldset>
 
         <!-- Brew Method -->
         <div class="form-group">
@@ -91,8 +360,6 @@
 
         <button type="submit">Save</button>
     </form>
-
-    <a href="/" class="back-link">Back to Coffee List</a>
 </div>
 
 </body>
