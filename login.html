@@ -3,12 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* Base reset and layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3efe6; /* light coffee cream */
+            color: #3b240c; /* deep coffee brown */
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #5a3e1b; /* medium roast */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+        }
+
+        /* Buttons */
+        button,
+        .coffee-btn,
+        .search-btn,
+        input[type="submit"] {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #a67c00; /* golden crema */
+            color: #3b240c;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover,
+        .coffee-btn:hover,
+        .search-btn:hover,
+        input[type="submit"]:hover {
+            background-color: #d4af37; /* lighter golden crema */
+            color: #2e1b00;
+        }
+
+        /* Form */
+        form {
+            margin-top: 30px;
+            padding: 25px 30px;
+            background-color: #fff8ee; /* latte beige */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(91, 62, 33, 0.1);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #4b2e0c;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Georgia', serif;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        select,
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #bfa26a;
+            background-color: #f6f0e4;
+            color: #3b240c;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            background-color: #efe2d0;
+            border-color: #a67c00;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #c8a97e;
+            font-size: 16px;
+            color: #3b240c;
+        }
+
+        table th {
+            background-color: #7b4f28; /* espresso */
+            color: #fff8ee;
+            font-weight: 700;
+        }
+
+        table td {
+            background-color: #fdf8f2; /* light milk coffee */
+        }
+
+        table td a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #a67c00;
+            color: #3b240c;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        table td a:hover {
+            background-color: #d4af37;
+            color: #2e1b00;
+        }
+
+        /* Utility */
+        .search-bar-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        a.back-link {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #7b4f28;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        a.back-link:hover {
+            color: #a67c00;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container">
     <h1>Login</h1>
-
 
     <form th:action="@{/login}" method="post">
         <div class="form-group">
@@ -20,9 +187,6 @@
             <input type="password" name="password" id="password" required />
         </div>
         <button type="submit">Login</button>
-    </form>
-
-
     </form>
 </div>
 </body>
