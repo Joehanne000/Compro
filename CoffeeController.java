@@ -1,4 +1,4 @@
-package com.smoshi.coffee;
+package com.JOWHAN.damn;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,16 @@ public class CoffeeController {
         coffeeService = new CoffeeService();
     }
 
-    //COFFEE ROUTES
+    // ✅ Home route redirect
+    @GetMapping("/home")
+    public String homeRedirect(HttpSession session) {
+        if (session.getAttribute("username") == null) {
+            return "redirect:/login";
+        }
+        return "redirect:/";
+    }
+
+    // COFFEE ROUTES
 
     @GetMapping("/")
     public String index(@RequestParam(defaultValue = "") String search, Model model, HttpSession session) {
@@ -108,5 +117,15 @@ public class CoffeeController {
             coffeeService.updateCoffee(id, coffee);
         }
         return "redirect:/";
+    }
+
+    // ✅ Catalog Route
+    @GetMapping("/catalog")
+    public String catalog(HttpSession session, Model model) {
+        if (session.getAttribute("username") == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("coffees", coffeeService.getAllCoffees());
+        return "catalog";
     }
 }
