@@ -1,4 +1,4 @@
-package com.smoshi.coffee;
+package com.JOWHAN.damn;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
