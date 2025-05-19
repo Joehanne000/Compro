@@ -3,11 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/style.css">
     <title>Coffee List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2ece4; /* light coffee background */
+            color: #4b3832; /* dark coffee text */
+            line-height: 1.6;
+            font-size: 16px;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #d7ccc8; /* coffee-cream sidebar */
+            border-right: 1px solid #c8b7b2;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #3e2723;
+            margin-bottom: 40px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 20px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: #5d4037;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .nav-list li a span {
+            margin-right: 10px;
+        }
+
+        .nav-list li a:hover,
+        .nav-list li.active a {
+            background-color: #6d4c41; /* espresso */
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #c8b7b2;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .container {
+            margin-left: 270px;
+            max-width: 1000px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #3e2723;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button, .coffee-btn, .search-btn, input[type="submit"] {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #6d4c41; /* coffee brown */
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover, .coffee-btn:hover, .search-btn:hover, input[type="submit"]:hover {
+            background-color: #4e342e;
+        }
+
+        .search-bar-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .search-bar,
+        input[type="text"],
+        input[type="number"],
+        input[type="checkbox"],
+        select {
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #bcaaa4;
+            background-color: #efebe9;
+            color: #3e2723;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            background-color: #e0dcd9;
+            border-color: #8d6e63;
+        }
+
+        form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff8f0;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #5d4037;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            color: #4e342e;
+        }
+
+        table th {
+            background-color: #795548;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        table td {
+            background-color: #f5f5f5;
+        }
+
+        table td a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #6d4c41;
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        table td a:hover {
+            background-color: #4e342e;
+        }
+
+        a.back-link {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #6d4c41;
+            font-weight: 500;
+        }
+
+        a.back-link:hover {
+            color: #3e2723;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: normal;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+
 </head>
 <body>
 
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-title">
+            <img src="https://th.bing.com/th/id/OIP.56QHEc_zJ4dpPaXd9zDYywHaLH?rs=1&pid=ImgDetMain" alt="Logo" class="logo"> <!-- Replace with your actual logo path -->
+            <h2>Coffee Shop</h2>
+        </div>
+    </div>
+    <ul class="nav-list">
+        <li><a href="/home"><span>🏠</span> Home</a></li>
+        <li><a href="/add"><span>➕</span> Add Coffee</a></li>
+        <li><a href="/catalog"><span>📚</span> Catalog</a></li>
+        <li><a href="/logout"><span>🚪</span> Logout</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <img src="https://sm.ign.com/ign_ap/cover/a/avatar-gen/avatar-generations_hugw.jpg" alt="JOWHAN" class="profile-pic">
+        <div>
+            <strong>JOWHAN</strong><br>
+            <small>COFFEE OWNER</small>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main Content -->
 <div class="container">
     <h1>Coffee Ordering</h1>
 
@@ -15,9 +271,8 @@
     <p th:if="${error}" th:text="${error}" style="color: red;"></p>
     <p>Welcome, <span th:text="${session.username}">user</span>!</p>
 
-    <a href="/add" class="coffee-btn">Add New Coffee</a>
 
-    <div class="search-bar-container">
+    <div class="search-bar-container" id="search">
         <form>
             <input type="text" name="search" class="search-bar" placeholder="Search coffee...">
             <button type="submit" class="search-btn">Search</button>
@@ -61,10 +316,6 @@
         </tr>
         </tbody>
     </table>
-
-    <form action="/logout" method="get" style="margin-top: 10px;">
-        <button type="submit">Logout</button>
-    </form>
 </div>
 
 </body>
