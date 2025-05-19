@@ -1,4 +1,4 @@
-package com.smoshi.coffee;
+package com.JOWHAN.damn;
 
 public class AppUser {
     private String username;
