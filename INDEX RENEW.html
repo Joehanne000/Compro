@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #2e2e2e;
+            line-height: 1.6;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            border-right: 1px solid #eee;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 40px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 20px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .nav-list li a span {
+            margin-right: 10px;
+        }
+
+        .nav-list li a:hover,
+        .nav-list li.active a {
+            background-color: #5b42f3;
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        /* Main Container */
+        .container {
+            margin-left: 270px;
+            max-width: 1000px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button, .coffee-btn, .search-btn, input[type="submit"] {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #555;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover, .coffee-btn:hover, .search-btn:hover, input[type="submit"]:hover {
+            background-color: #333;
+        }
+
+        .search-bar-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .search-bar,
+        input[type="text"],
+        input[type="number"],
+        input[type="checkbox"],
+        select {
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            background-color: #e0e0e0;
+            border-color: #999;
+        }
+
+        form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #444;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            color: #333;
+        }
+
+        table th {
+            background-color: #666;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        table td {
+            background-color: #fafafa;
+        }
+
+        table td a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #555;
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        table td a:hover {
+            background-color: #333;
+        }
+
+        a.back-link {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+        }
+
+        a.back-link:hover {
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h2>Lorma Colleges</h2>
+    </div>
+    <ul class="nav-list">
+        <li><a href="#"><span>🏠</span> Dashboard</a></li>
+        <li><a href="#"><span>📦</span> Product</a></li>
+        <li class="active"><a href="#"><span>👥</span> Customers</a></li>
+        <li><a href="#"><span>💰</span> Income</a></li>
+        <li><a href="#"><span>📢</span> Promote</a></li>
+        <li><a href="#"><span>❓</span> Help</a></li>
+
+        <form action="/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
+    </ul>
+    <div class="sidebar-footer">
+        <img src="https://sm.ign.com/ign_ap/cover/a/avatar-gen/avatar-generations_hugw.jpg" alt="JOWHAN" class="profile-pic">
+        <div>
+            <strong>JOWHAN</strong><br>
+            <small>COLLEGE STUDENT</small>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <h1>Coffee Ordering</h1>
+
+    <p th:if="${message}" th:text="${message}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    <p>Welcome, <span th:text="${session.username}">user</span>!</p>
+
+    <a href="/add" class="coffee-btn">Add New Coffee</a>
+
+    <div class="search-bar-container">
+        <form>
+            <input type="text" name="search" class="search-bar" placeholder="Search coffee...">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Roast Level</th>
+            <th>Origin</th>
+            <th>Decaf</th>
+            <th>Stock</th>
+            <th>Flavor Notes</th>
+            <th>Brew Method</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="coffee, stat : ${coffees}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${coffee.name}"></td>
+            <td th:text="${coffee.type}"></td>
+            <td th:text="${coffee.size}"></td>
+            <td th:text="'$' + ${coffee.price}"></td>
+            <td th:text="${coffee.roastLevel}"></td>
+            <td th:text="${coffee.origin}"></td>
+            <td th:text="${coffee.isDecaf ? 'Yes' : 'No'}"></td>
+            <td th:text="${coffee.stock}"></td>
+            <td th:text="${coffee.flavorNotes}"></td>
+            <td th:text="${coffee.brewMethod}"></td>
+            <td>
+                <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
+                <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+</body>
+</html>
