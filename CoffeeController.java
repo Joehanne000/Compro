@@ -13,7 +13,7 @@ public class CoffeeController {
         coffeeService = new CoffeeService();
     }
 
-    // ✅ Home route redirect
+    //  Home route redirect
     @GetMapping("/home")
     public String homeRedirect(HttpSession session) {
         if (session.getAttribute("username") == null) {
