@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coffee Catalog</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background-color: #3b240c;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .item img {
+      width: 300px;
+      height: auto;
+      border: 10px solid white;
+      object-fit: cover;
+    }
+
+    .details {
+      max-width: 300px;
+      text-align: left;
+    }
+
+    .details h2 {
+      font-size: 1.5rem;
+      margin: 0 0 5px;
+      font-weight: bold;
+    }
+
+    .details .price {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .details p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 768px) {
+      .catalog {
+        grid-template-columns: 1fr;
+      }
+
+      .item {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .details {
+        margin-top: 0;
+        text-align: left;
+      }
+    }
+    /* Sidebar navigation styles */
+    .nav-list {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+      background-color: #2e1b07;
+      width: 220px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.7);
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-right: 2px solid #4b2e0c;
+      z-index: 1000;
+    }
+
+    .nav-list li a {
+      color: #f5f5dc;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      background-color: #a67c00;
+      color: #fff;
+    }
+
+    .nav-list li a span {
+      font-size: 1.3rem;
+    }
+
+    /* Add some left padding to the page content to avoid overlap with sidebar */
+    body {
+      padding-left: 240px; /* same as sidebar width + some spacing */
+    }
+
+  </style>
+</head>
+<body>
+<ul class="nav-list">
+  <li><a href="/home"><span>🏠</span> Home</a></li>
+  <li><a href="/add"><span>➕</span> Add Coffee</a></li>
+  <li><a href="/catalog"><span>📚</span> Catalog</a></li>
+  <li><a href="/logout"><span>🚪</span> Logout</a></li>
+</ul>
+<div class="catalog">
+  <div class="item">
+    <img src="https://img1.wsimg.com/isteam/stock/108884/:/rs=w:360,h:270.6766917293233,cg:true,m/cr=w:360,h:270.6766917293233" alt="Coffee">
+    <div class="details">
+      <h2>Light Roast Colombian Coffee</h2>
+      <div class="price">$15.50</div>
+      <p>This is a rich and flavorful coffee blend, crafted to deliver a smooth taste with every sip. Perfect for any time of day.</p>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://th.bing.com/th/id/R.d83dd386e780298c929c783301f1154c?rik=0c6hX7T2UStI3g&riu=http%3a%2f%2fi.huffpost.com%2fgen%2f995139%2fimages%2fo-CLEAN-COFFEE-MUG-facebook.jpg&ehk=S8ou3YT8SZqvmumgtB1AV7d0vYKIrqwupIQ7THHyQKQ%3d&risl=&pid=ImgRaw&r=0" alt="Coffee">
+    <div class="details">
+      <h2>Black Coffee</h2>
+      <div class="price">$15.50</div>
+      <p>A comforting cup with deep aroma and balanced strength—ideal for morning routines or relaxing afternoons.</p>
+    </div>
+  </div>
+  <div class="item">
+    <img src="https://th.bing.com/th/id/OIP.C1C4wUMawCgzASLhP__HtQHaHa?rs=1&pid=ImgDetMain" alt="Coffee">
+    <div class="details">
+      <h2>Americano</h2>
+      <div class="price">$15.50</div>
+      <p>Enjoy a full-bodied brew with subtle notes of chocolate and spice—crafted for true coffee lovers.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
